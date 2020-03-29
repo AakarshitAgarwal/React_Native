@@ -1,3 +1,5 @@
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Remote debugger']);  //for removing the warning which might slow down the functioning of the the app
 import React,{Component} from 'react';
 import {
   StyleSheet,
@@ -13,16 +15,27 @@ export default class App extends Component{
   constructor(){
     super()
     this.state={
-       resultText:""
+       resultText:"",
+       calculationsText:""
     }
+    
+    this.operations=['D','+','-','*','/']    //passing operations to the constructor
+   
   }
   calculateResult(){
     const text=this.state.resultText
+   // console.log(text)
     //now parse this text
+    //use BODMAS
+    this.setState({
+      calculationsText:eval(text)
+    })
+    //eval is a special cheat for js for just to evaluate the string as a JS,rather than splitting the string into the array and checking for BODMAS
+
   }
 
   buttonPressed(text){
-  console.log(text)
+  //console.log(text)
 
     if(text =='='){
       return this.calculateResult()
@@ -37,10 +50,24 @@ operate(operations){
     case 'D':
        console.log(this.state.resultText)
        const text =this.state.resultText.split('')
-       text.pop()
+       text.pop()                //to delete from the last character
        //test.join('')
        this.setState({
-         resultText:text.join('')
+         resultText:text.join('')                     
+       })
+       break
+    case '+':
+    case '-':
+    case '*':
+    case '/':
+
+       const lastChar=this.state.resultText.split('').pop()    //for tokenize the numbers
+    
+       if(this.operations.indexOf(lastChar)>0){return}      //we cannot try two operations on the screen continuously
+
+       if(this.state.text=="") {return}   
+       this.setState({
+         resultText:this.state.resultText + operations
        })
   }
 }
@@ -57,23 +84,26 @@ operate(operations){
       }
       rows.push(<View style={styles.row}>{row}</View>)
     }
-    let operations=['D','+','-','=','/']
-    let ops=[]
-    for(let i=0;i<5;i++){
-      ops.push(<TouchableOpacity style={styles.btn } onPress={()=>this.operate(operations[i])}>
-        <Text style={!styles.btntext,styles.white}>{operations[i]}</Text>
-      </TouchableOpacity>)
+    let ops=[]          
+    for(let i=0;i<5;i++)           //by this.operation we are making it class property
+    {
+      ops.push(<TouchableOpacity style={styles.btn } onPress={()=>this.operate(this.operations[i])}>     
+        <Text style={!styles.btntext,styles.white}>{this.operations[i]}</Text>
+      </TouchableOpacity>)                             //TouchableOpacity is better than button
     
     }
-    return (
+   
+    //1){this.state.calculationsText} used in styles.calculationsText is defined above
+   
+    return(
       <View style={styles.container}>
           <View style={styles.result}>
             <Text style={styles.resultText}>{this.state.resultText}</Text>
-          </View>
+          </View>        
           <View style={styles.calculations}>
-            <Text style={styles.calculationsText}>121</Text>
-          </View>
-          <View style={styles.buttons}>
+            <Text style={styles.calculationsText}>{this.state.calculationsText}</Text>   
+          </View>  
+          <View style={styles.buttons}>   
           <View style={styles.numbers}>
              {rows}
           </View>
@@ -97,7 +127,7 @@ const styles =StyleSheet.create({
     btntext:{
       fontSize:30,
     },
-    white:{
+    white:{                    //for operation colours
       color:'white',
       fontSize:30
     },
