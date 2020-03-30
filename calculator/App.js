@@ -19,7 +19,7 @@ export default class App extends Component{
        calculationsText:""
     }
     
-    this.operations=['D','+','-','*','/']    //passing operations to the constructor
+    this.operations=['DEL','+','-','*','/']    //passing operations to the constructor
    
   }
   calculateResult(){
@@ -60,7 +60,7 @@ export default class App extends Component{
   
 operate(operations){
   switch(operations){
-    case 'D':
+    case 'DEL':
        console.log(this.state.resultText)
        const text =this.state.resultText.split('')
        text.pop()                //to delete from the last character
@@ -91,20 +91,21 @@ operate(operations){
     for(let i=0;i<4;i++){
       let row=[]
       for(let j=0;j<3;j++){
-        row.push(<TouchableOpacity onPress={()=>this.buttonPressed(nums[i][j])}style={styles.btn}>
+        row.push(<TouchableOpacity key={nums[i][j]} onPress={()=>this.buttonPressed(nums[i][j])}style={styles.btn}>
           <Text style={styles.btntext}>{nums[i][j]}</Text>
         </TouchableOpacity>)
-      }
-      rows.push(<View style={styles.row}>{row}</View>)
+      }   //adding key=nums[i][j] in touchableopacity for JS warning
+
+      rows.push(<View key={i} style={styles.row}>{row}</View>)   //adding key={i} for JS warning
     }
     let ops=[]          
     for(let i=0;i<5;i++)           //by this.operation we are making it class property
     {
-      ops.push(<TouchableOpacity style={styles.btn } onPress={()=>this.operate(this.operations[i])}>     
+      ops.push(<TouchableOpacity key={this.operations[i]} style={styles.btn } onPress={()=>this.operate(this.operations[i])}>     
         <Text style={!styles.btntext,styles.white}>{this.operations[i]}</Text>
       </TouchableOpacity>)                             //TouchableOpacity is better than button
     
-    }
+    }   //key={this.operations[i]} for JS warning
    
     //1){this.state.calculationsText} used in styles.calculationsText is defined above
    
@@ -134,25 +135,26 @@ const styles =StyleSheet.create({
       flex:1
     },
     resultText:{
-      fontSize:30,
-      color:'white'
+      fontSize:50,
+      color:'black' 
     },
     btntext:{
-      fontSize:30,
+      fontSize:25,
+      color: 'white'
     },
     white:{                    //for operation colours
       color:'white',
-      fontSize:30
+      fontSize:25
     },
     btn:{
       flex:1,
       alignItems:'center',
       alignSelf:'stretch',
-      justifyContent:'center'
+      justifyContent:'center',
     },
     calculationsText:{
-      fontSize:24,
-      color:'white'
+      fontSize:45,
+      color:'rgb(168, 168, 168)'
     },
     row:{
       flexDirection:'row',
@@ -162,13 +164,13 @@ const styles =StyleSheet.create({
     },
     result:{
       flex:2,
-      backgroundColor: 'red',
+      backgroundColor: 'white',
       justifyContent:'center',
       alignItems:'flex-end'
     },
     calculations:{
       flex:1,
-      backgroundColor: 'green', 
+      backgroundColor: 'white', 
       justifyContent:'center',
       alignItems:'flex-end'
     
@@ -179,13 +181,14 @@ const styles =StyleSheet.create({
     },
     numbers:{
       flex:3,
-      backgroundColor: 'yellow'
+      backgroundColor: 'rgb(60, 64, 66)'
+      
     },
     operations:{
       flex:1,
       justifyContent:'space-around',
       alignItems:'stretch',
-      backgroundColor: 'black'
+      backgroundColor: 'rgb(95, 98, 103)'
     },
     
 
