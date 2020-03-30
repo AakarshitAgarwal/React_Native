@@ -34,12 +34,25 @@ export default class App extends Component{
 
   }
 
+  validate(){
+    const text=this.state.resultText
+    switch(text.slice(-1)){
+      case '+':
+        case '-':
+          case '*':
+            case '/':
+              return false
+        
+    }
+    return true
+  }
+
   buttonPressed(text){
   //console.log(text)
 
     if(text =='='){
-      return this.calculateResult()
-    }
+      return this.validate() && this.calculateResult()
+    }//adding validate function so that if validate is true than only '=' will work
 
     this.setState({ 
       resultText:this.state.resultText+text})
