@@ -12,10 +12,12 @@ import {
 const SplashScreen =()=>{
     return(
         <View style={styles.container}>
-            <Button
-            title ="Click Here"
-            onPress={()=>alert('Button Clicked:')}
-            />
+            <View style={styles.header}>
+                <Text>header</Text>
+            </View>
+            <View style={styles.footer}>
+                <Text>footer</Text>
+            </View>
         </View>
     );
 };
@@ -23,7 +25,7 @@ const SplashScreen =()=>{
 export default SplashScreen;
 
 const {height} = Dimensions.get("screen");
-const height_logo = height * 0.28;
+const height_logo = height * 0.28;   //logo heigth will be 28% of device height
 
 const styles = StyleSheet.create({
   container: {
@@ -31,15 +33,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#009387'
   },
   header: {
-      flex: 2,
+      flex: 2,     //getting 2/3 of the screen
       justifyContent: 'center',
       alignItems: 'center'
   },
   footer: {
-      flex: 1,
+      flex: 1,     //it is getting 1/3 of the screen
       backgroundColor: '#fff',
       borderTopLeftRadius: 30,
-      borderTopRightRadius: 30,
+      borderTopRightRadius: 30,   //for curves
       paddingVertical: 50,
       paddingHorizontal: 30
   },
