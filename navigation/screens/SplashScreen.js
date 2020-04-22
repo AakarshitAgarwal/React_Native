@@ -9,16 +9,44 @@ import {
     Button
 } from 'react-native';
 
+import * as Animatable from 'react-native-animatable';    //from npm install react-native-animatable --save
+import LinearGradient from 'react-native-linear-gradient';     //from npm install react-native-linear-gradient --save and npm i react-native-linear-gradient
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';  //from npm i react-native-vector-icons
+
 const SplashScreen =()=>{
     return(
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text>header</Text>
-            </View>
-            <View style={styles.footer}>
-                <Text>footer</Text>
-            </View>
+<View style={styles.container}>
+        <View style={styles.header}>
+          
         </View>
+        <Animatable.View 
+            style={styles.footer}
+            animation="fadeInUpBig"
+        >  
+            <Text style={styles.title}>Stay connected with everyone!</Text>
+            <Text style={styles.text}>Sign in with account</Text>
+            <View style={styles.button}  //this view is created so that button moves right in bottom?             
+                 > 
+        
+            <TouchableOpacity onPress={()=>alert('Click')}>
+                <LinearGradient
+                    colors={['#08d4c4', '#01ab9d']}
+                    style={styles.signIn}
+                >
+                    <Text style={styles.textSign}>Get Started</Text>
+                    <MaterialIcons 
+                        name="navigate-next"
+                        color="#fff"
+                        size={20}
+                    />
+
+                </LinearGradient>
+            </TouchableOpacity>
+            </View>       
+            
+            </Animatable.View>
+     
+      </View>
     );
 };
 
