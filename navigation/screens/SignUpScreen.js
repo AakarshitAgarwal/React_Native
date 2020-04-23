@@ -16,14 +16,16 @@ import LinearGradient from 'react-native-linear-gradient';     //from npm instal
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-const SignInScreen =(navigation)=>{
+const SignInScreen =({navigation})=>{
 
   //for password eye and security
   const [data, setData] = React.useState({
     email: '',
     password: '',
+    confirm_password:'',
     check_textInputChange: false,
-    secureTextEntry: true
+    secureTextEntry: true,
+    confirm_secureTextEntry: true
 });
 
 //for email
@@ -53,11 +55,24 @@ const handlePasswordChange = (val) => {
       password: val
   });
 }
+const handleConfirmPasswordChange = (val) => {
+  setData({
+      ...data,
+      confirm_password: val
+  });
+}
 //for toggling the icon
 const updateSecureTextEntry = () => {
   setData({
       ...data,
       secureTextEntry: !data.secureTextEntry  //if it is true than it will be false and vice-versa
+  });
+}
+
+const updateConfirmSecureTextEntry = () => {
+  setData({
+      ...data,
+      confirm_secureTextEntry: !data.confirm_secureTextEntry  //if it is true than it will be false and vice-versa
   });
 }
 
@@ -68,7 +83,7 @@ const updateSecureTextEntry = () => {
           <StatusBar backgroundColor='#009387' barStyle="light-content"   //this will change status acc to phones
           />  
         <View style={styles.header}>
-            <Text style={styles.text_header}>Welcome!</Text>
+            <Text style={styles.text_header}>Register Now</Text>
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
@@ -117,13 +132,13 @@ const updateSecureTextEntry = () => {
                 />
                 <TextInput
                   placeholder="Your Password"
-                  secureTextEntry={data.secureTextEntry ? true : false}   //if it is true than it will be true otherwise it will be false
+                  secureTextEntry={data.confirm_secureTextEntry ? true : false}   //if it is true than it will be true otherwise it will be false
                   style={styles.textInput}
                   autoCapitalize="none"
-                  onChangeText={(val) => handlePasswordChange(val)}
+                  onChangeText={(val) => handleConfirmPasswordChange(val)}
                 />
                 <TouchableOpacity   //for eye ion it will be better
-                    onPress={updateSecureTextEntry}
+                    onPress={updateConfirmSecureTextEntry}
                 >
                   
                     {data.secureTextEntry ? 
@@ -190,11 +205,11 @@ const updateSecureTextEntry = () => {
                 >
                     <Text style={[styles.textSign, {
                         color:'#fff'
-                    }]}>Sign In</Text>
+                    }]}>Sign Up</Text>
                 </LinearGradient>
 
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('SignUpScreen')}
+                    onPress={() => navigation.goBack()} //goBack function so that we can go back to the screen
                     style={[styles.signIn, {
                         borderColor: '#009387',
                         borderWidth: 1,
@@ -203,7 +218,7 @@ const updateSecureTextEntry = () => {
                 >
                     <Text style={[styles.textSign, {
                         color: '#009387'
-                    }]}>Sign Up</Text>
+                    }]}>Sign In</Text>
                 </TouchableOpacity>
             </View>
 
