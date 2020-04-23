@@ -27,7 +27,7 @@ const SplashScreen =({navigation})=>{
             <Text style={styles.text}>Sign in with account</Text>
             <View style={styles.button}  //this view is created so that button moves right in bottom?             
                  > 
-        
+         
             <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
                 <LinearGradient
                     colors={['#08d4c4', '#01ab9d']}

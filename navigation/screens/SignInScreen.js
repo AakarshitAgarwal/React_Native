@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { 
     View, 
     Text, 
@@ -86,19 +87,24 @@ const updateSecureTextEntry = () => {
                   autoCapitalize="none"
 
                 />
-                
-                {data.check_textInputChange ? 
-                //this will add icon when we type
-                <Animatable.View
-                animation="bounceIn"
-            >
+
                 <Feather 
-                  name="check-circle"
-                  color="green"
-                  size={20}
-                />
+                        name="check-circle"
+                        color="green"
+                        size={20}
+                    />
+                {/* {data.check_textInputChange ? 
+                <Animatable.View
+                    animation="bounceIn"
+                >
+                    <Feather 
+                        name="check-circle"
+                        color="green"
+                        size={20}
+                    />
                 </Animatable.View>
-                :null}    
+                : null} */}
+           
         </View>
         <Text style={[styles.text_footer, {
                 marginTop: 35
