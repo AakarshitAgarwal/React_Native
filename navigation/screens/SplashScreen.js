@@ -13,7 +13,7 @@ import * as Animatable from 'react-native-animatable';    //from npm install rea
 import LinearGradient from 'react-native-linear-gradient';     //from npm install react-native-linear-gradient --save and npm i react-native-linear-gradient
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';  //from npm i react-native-vector-icons
 
-const SplashScreen =()=>{
+const SplashScreen =({navigation})=>{
     return(
 <View style={styles.container}>
         <View style={styles.header}>
@@ -28,7 +28,7 @@ const SplashScreen =()=>{
             <View style={styles.button}  //this view is created so that button moves right in bottom?             
                  > 
         
-            <TouchableOpacity onPress={()=>alert('Click')}>
+            <TouchableOpacity onPress={()=>navigation.navigate('SignInScreen')}>
                 <LinearGradient
                     colors={['#08d4c4', '#01ab9d']}
                     style={styles.signIn}
