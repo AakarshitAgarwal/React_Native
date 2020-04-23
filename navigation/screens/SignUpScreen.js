@@ -142,7 +142,44 @@ const updateSecureTextEntry = () => {
                     }
                 </TouchableOpacity>
         </View>
-      
+
+        <Text style={[styles.text_footer, {
+                marginTop: 35
+            }]}>Confirm Password</Text>
+        <View style={styles.action}>
+        <Feather   //icon on the email
+                    name="lock"
+                    color="#05375a"
+                    size={20}
+                />
+                <TextInput
+                  placeholder="Confirm Your Password"
+                  secureTextEntry={data.secureTextEntry ? true : false}   //if it is true than it will be true otherwise it will be false
+                  style={styles.textInput}
+                  autoCapitalize="none"
+                  onChangeText={(val) => handlePasswordChange(val)}
+                />
+                <TouchableOpacity   //for eye ion it will be better
+                    onPress={updateSecureTextEntry}
+                >
+                  
+                    {data.secureTextEntry ? 
+                    //this feature will make eye off-on
+                    <Feather 
+                        name="eye-off"
+                        color="grey"
+                        size={20}
+                    />
+                    :
+                    <Feather 
+                        name="eye"
+                        color="grey"
+                        size={20}
+                    />
+                    }
+                </TouchableOpacity>
+        </View>
+     
         <TouchableOpacity    >  
                 <Text style={{color: '#009387', marginTop:15}}>Forgot password?</Text>
             </TouchableOpacity>

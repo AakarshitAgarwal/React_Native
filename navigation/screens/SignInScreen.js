@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';     //from npm instal
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-const SignInScreen =(navigation)=>{
+const SignInScreen =({navigation})=>{
 
   //for password eye and security
   const [data, setData] = React.useState({
