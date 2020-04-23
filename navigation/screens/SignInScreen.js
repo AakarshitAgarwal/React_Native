@@ -63,10 +63,16 @@ const updateSecureTextEntry = () => {
 
   return(
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text_header}>Welcome</Text>
-      </View>
-      <View style={styles.footer}>
+      
+          <StatusBar backgroundColor='#009387' barStyle="light-content"   //this will change status acc to phones
+          />  
+        <View style={styles.header}>
+            <Text style={styles.text_header}>Welcome!</Text>
+        </View>
+        <Animatable.View 
+            animation="fadeInUpBig"
+            style={styles.footer}
+        >
         <Text style={styles.text_footer}>Email</Text>
         <View style={styles.action}>
         <FontAwesome   //icon on the email
@@ -158,7 +164,7 @@ const updateSecureTextEntry = () => {
                 </TouchableOpacity>
             </View>
 
-      </View>
+      </Animatable.View>
    
     </View>
 
