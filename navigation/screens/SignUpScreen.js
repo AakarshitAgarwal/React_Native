@@ -210,7 +210,8 @@ const updateConfirmSecureTextEntry = () => {
 
                 <TouchableOpacity
                     onPress={() => navigation.goBack()} //goBack function so that we can go back to the screen
-                    style={[styles.signIn, {
+                   //onPress={()=>navigation.navigate('Working')}
+                   style={[styles.signIn, {
                         borderColor: '#009387',
                         borderWidth: 1,
                         marginTop: 15

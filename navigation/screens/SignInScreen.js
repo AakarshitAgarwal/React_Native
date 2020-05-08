@@ -23,15 +23,16 @@ const SignInScreen =({navigation})=>{
 
   //for password eye and security
   const [data, setData] = React.useState({
-    email: '',
+    Username: '',
     password: '',
     check_textInputChange: false,
     secureTextEntry: true
 });
 
-const { signIn } = React.useContext(AuthContext);
 
-//for email
+const { signIn } = React.useContext(AuthContext); //accessing signin function fom app.js
+
+//for Username
 const textInputChange = (val) => {
   if( val.length !== 0 ) {  //if field is not empty then we will update our state
       setData({
@@ -39,14 +40,14 @@ const textInputChange = (val) => {
         //added destructuring operator to get existing state
           ...data,   //this will access the data array created above
          
-          email: val,
+          Username: val,
           check_textInputChange: true
       });
   } 
   else {
       setData({
           ...data,
-          email: val,
+          Username: val,
           check_textInputChange: false    //false*
       });
     }
@@ -79,15 +80,15 @@ const updateSecureTextEntry = () => {
             animation="fadeInUpBig"
             style={styles.footer}
         >
-        <Text style={styles.text_footer}>Email</Text>
+        <Text style={styles.text_footer}>Username</Text>
         <View style={styles.action}>
-        <FontAwesome   //icon on the email
+        <FontAwesome   //icon on the Username
                     name="user-o"
                     color="#05375a"
                     size={20}
                 />
                 <TextInput
-                  placeholder="Your Email"
+                  placeholder="Your Username"
                   style={styles.textInput}
                   autoCapitalize="none"
 
@@ -115,7 +116,7 @@ const updateSecureTextEntry = () => {
                 marginTop: 35
             }]}>Password</Text>
         <View style={styles.action}>
-        <Feather   //icon on the email
+        <Feather   //icon on the Username
                     name="lock"
                     color="#05375a"
                     size={20}
@@ -155,7 +156,8 @@ const updateSecureTextEntry = () => {
             <TouchableOpacity
                 style={styles.signIn}
                 //onpress pr signin pr hi rahunga
-                onPress={() => {signIn()}}
+                //onPress={()=>{signIn()}}
+                onPress={()=>navigation.navigate('Working')} //pr ab nh
             >
 
                 
