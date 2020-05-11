@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/Octicons';  //isse hamburger wala nh
 
 //import Icon from 'react-native-vector-icons';  //npm i react-native-vector-icons
 //import Icon from 'react-native-ionicons';
-//import { DrawerContent } from './screens/DrawerContent';
+import { DrawerContent } from './screens/DrawerContent';
 //import { Button } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -72,7 +72,7 @@ import RootStackScreen from './screens/RootStackScreen';*/
   const App= ()=>{
     return(
       <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
         <Drawer.Screen name="Home" component ={MainTabScreen}/>
         {/* <Drawer.Screen name="Details" component ={DetailsStackScreen}/> */}
       </Drawer.Navigator>
