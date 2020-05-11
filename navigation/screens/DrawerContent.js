@@ -30,9 +30,37 @@ export function DrawerContent(props) {
     return(
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
-               
+            <View style={styles.drawerContent}>
+                    <View style={styles.userInfoSection}>
+                        <View style={{flexDirection:'row',marginTop: 15}}>
+                            <Avatar.Image 
+                                source={{
+                                    uri: 'https://avatars0.githubusercontent.com/u/46739754?s=400&u=8d855cb76bfe3a0d536a5cfcbccdc3df94318980&v=4'//GitHub profile image url ;-)
+                                }}
+                                size={50}
+                            />
+                            <View style={{marginLeft:15, flexDirection:'column'}}>
+                                <Title style={styles.title}>Aakarshit Agarwal</Title>
+                                <Caption style={styles.caption}>@aakarshitagarwal</Caption>
+                            </View>
+                        </View>
+                    </View>
+            </View>            
             </DrawerContentScrollView>
             
+        <Drawer.Section style={styles.bottomDrawerSection}>
+                <DrawerItem 
+                    icon={({color, size}) => (
+                        <Icon 
+                        name="exit-to-app" 
+                        color={color}
+                        size={size}
+                        />
+                    )}
+                    label="Sign Out"
+                    onPress={() => {}}
+                />
+            </Drawer.Section>
         </View>
     );
 }
