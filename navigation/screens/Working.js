@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import {  View, Text } from 'react-native';
 
-
+import{ AuthContext } from '../components/context';
 const Working =({navigation})=>{
  
     return (

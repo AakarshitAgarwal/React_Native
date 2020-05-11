@@ -7,34 +7,120 @@
  */
 
 import React, { useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-// import { createDrawerNavigator } from '@react-navigation/drawer';
+import { View,Text,Button, ActivityIndicator } from 'react-native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+//import { Button } from 'react-native-elements'
+//import Icon from 'react-native-vector-icons/Ionicons'; //isse hamburger wala nh a rh h icon
+import Icon from 'react-native-vector-icons/Octicons';  //isse hamburger wala nh a rh h icon
 
-// import { DrawerContent } from './screens/DrawerContent';
-import Working from './screens/Working';
 
-// import MainTabScreen from './screens/MainTabScreen';
-// import SupportScreen from './screens/SupportScreen';
-// import SettingsScreen from './screens/SettingsScreen';
-// import BookmarkScreen from './screens/BookmarkScreen';
-//import { createDrawerNavigator } from '@react-navigation/drawer'; //npm install @react-navigation/drawer
+//import Icon from 'react-native-vector-icons';  //npm i react-native-vector-icons
+//import Icon from 'react-native-ionicons';
+//import { DrawerContent } from './screens/DrawerContent';
+//import { Button } from 'react-native-paper';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from './screens/HomeScreen';
+import DetailsScreen from './screens/DetailsScreen';
+
+ const HomeStack = createStackNavigator();
+
+ const DetailsStack = createStackNavigator();
+
+ const Drawer = createDrawerNavigator();
+ const HomeStackScreen =({navigation}) =>(
+        <HomeStack.Navigator screenOptions={{
+          headerStyle:{
+            backgroundColor:'#009387',
+          },
+          headerTintColor:'#fff',
+          headerTitleStyle:{
+            fontWeight:'bold'
+          }
+        }}>
+          <HomeStack.Screen name="Home" component={HomeScreen} options={{
+          
+            headerLeft:()=>(
+              <Icon.Button name='three-bars' size={25}
+              backgroundColor="#009387" onPress={() => navigation.openDrawer()}/> )
+          }}/>
+        </HomeStack.Navigator>
+         ); 
+ const DetailsStackScreen =({navigation}) =>(
+  <DetailsStack.Navigator screenOptions={{
+    headerStyle:{
+      backgroundColor:'#009387',
+    },
+    headerTintColor:'#fff',
+    headerTitleStyle:{
+      fontWeight:'bold'
+    }
+  }}>
+    <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+
+     headerLeft:()=>(
+       <Icon.Button name='three-bars' size={25}
+       backgroundColor="#009387" onPress={() => navigation.openDrawer()}/> )  //openDrawer() to open the drawer
+   }}/>
+  </DetailsStack.Navigator>
+);
+
+//import {Working} from './screens/Working';
+/*
+ import MainTabScreen from './screens/MainTabScreen';
+ import SupportScreen from './screens/SupportScreen';
+ import SettingsScreen from './screens/SettingsScreen';
+ import BookmarkScreen from './screens/BookmarkScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer'; //npm install @react-navigation/drawer
 import { AuthContext } from './components/context';
-import RootStackScreen from './screens/RootStackScreen';
+import RootStackScreen from './screens/RootStackScreen';*/
 
 //import { DrawerContent } from './screens/DrawerContent';
-//const Drawer = createDrawerNavigator();
 
-const App = () => {
-  // const [isLoading, setIsLoading] = React.useState(true);
-  // const [userToken, setUserToken] = React.useState(null);  //usertoken is used in functions
+ //const App = () => {
+//   // const [isLoading, setIsLoading] = React.useState(true);
+//   // const [userToken, setUserToken] = React.useState(null);  //usertoken is used in functions
  
-  const initialLoginState = {
-    isLoading: true,
-    userName: null,
-    userToken: null,
+//   const initialLoginState = {
+//     isLoading: true,
+//     userName: null,
+//     userToken: null,
+//   };
+/*
+  const HomeScreen= ({navigation}) => {
+    return(
+      <View style={{ flex:1,alignItems:'center',justifyContent:'center'}}>
+        <Text>Home Screen</Text>
+        <Button
+         title="Go to detail screen"
+         onPress={()=>navigation.navigate("Details")}/>
+
+      </View>
+          );
+
   };
 
+  const DetailsScreen= () => {
+    return(
+      <View style={{ flex:1,alignItems:'center',justifyContent:'center'}}>
+        <Text>DetailsScreen</Text>
+      </View>
+    );
+
+  };*/
+
+  const App= ()=>{
+    return(
+      <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component ={HomeStackScreen}/>
+        <Drawer.Screen name="Details" component ={DetailsStackScreen}/>
+      </Drawer.Navigator>
+    </NavigationContainer>
+    );
+  };
+  //const Drawer = createDrawerNavigator();
+/*
   const loginReducer = (prevState, action) => {
     switch( action.type ) {
       case 'RETRIEVE_TOKEN':  //if user had already login once
@@ -82,11 +168,11 @@ const App = () => {
       dispatch({type:'LOGIN',id:userName,token:userToken});
     },
     signIn: () => {
-      setUserToken(null);
+     // setUserToken(null);
       //setIsLoading(false);
    },
    signIn: () => {
-    setUserToken('fgkj');
+    //setUserToken('fgkj');
     //setIsLoading(false);
  },
 }));
@@ -114,15 +200,41 @@ const App = () => {
       
     );
   }
+  */
+ /*
   return (
-    <AuthContext.Provider value={authContext}> 
-    <NavigationContainer>
 
-        <RootStackScreen/>
-      </NavigationContainer>
-    </AuthContext.Provider>
-  );
-}
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component ={HomeScreen}/>
+        <Drawer.Screen name="Details" component ={DetailsScreen}/>
+        
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );*/
+  //}
+//     <AuthContext.Provider value={authContext}> 
+//     <NavigationContainer>
+//     { loginState.userToken !==null?(
+
+// <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>  
+// <Drawer.Screen name="HomeDrawer" component={MainTabScreen} />
+
+//           <Drawer.Screen name="SupportScreen" component={SupportScreen} />
+//           <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
+//           <Drawer.Screen name="BookmarkScreen" component={BookmarkScreen} />
+
+// </Drawer.Navigator>
+
+//   )
+
+//     :
+//     <RootStackScreen/>
+//   }
+//       </NavigationContainer>
+//     </AuthContext.Provider>
+//   );
+// }
 
 //waste
 /* <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>

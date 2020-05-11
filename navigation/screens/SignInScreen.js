@@ -66,6 +66,10 @@ const updateSecureTextEntry = () => {
       secureTextEntry: !data.secureTextEntry  //if it is true than it will be false and vice-versa
   });
 }
+ 
+const loginHandle = (userName, password) => {
+    signIn(userName,password);
+}
 
 
   return(
@@ -157,7 +161,7 @@ const updateSecureTextEntry = () => {
                 style={styles.signIn}
                 //onpress pr signin pr hi rahunga
                 //onPress={()=>{signIn()}}
-                onPress={()=>navigation.navigate('Working')} //pr ab nh
+                onPress={()=>{loginHandle( data.username, data.password )}} //pr ab nh
             >
 
                 
