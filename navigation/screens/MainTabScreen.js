@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';  //install it's dependencies
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Octicons';
+//import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './HomeScreen';
 import DetailsScreen from './DetailsScreen';
@@ -13,11 +14,11 @@ import ProfileScreen from './ProfileScreen';
 const HomeStack = createStackNavigator();
 const DetailsStack = createStackNavigator();
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();   //for material bottom screen
 
 const MainTabScreen = () => (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Home"   //intial screen details
       activeColor="#fff"
     >
       <Tab.Screen
@@ -69,39 +70,40 @@ const MainTabScreen = () => (
 
 export default MainTabScreen;
 
-const HomeStackScreen = ({navigation}) => (
-<HomeStack.Navigator screenOptions={{
-        headerStyle: {
-        backgroundColor: '#009387',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-        fontWeight: 'bold'
-        }
-    }}>
-        <HomeStack.Screen name="Home" component={HomeScreen} options={{
-        title:'Overview',
-        headerLeft: () => (
-            <Icon.Button name="ios-menu" size={25} backgroundColor="#009387" onPress={() => navigation.openDrawer()}></Icon.Button>
-        )
-        }} />
-</HomeStack.Navigator>
-);
+const HomeStackScreen =({navigation}) =>(
+  <HomeStack.Navigator screenOptions={{
+    headerStyle:{
+      backgroundColor:'#009387',
+    },
+    headerTintColor:'#fff',
+    headerTitleStyle:{
+      fontWeight:'bold'
+    }
+  }}>
+    <HomeStack.Screen name="Home" component={HomeScreen} options={{
+    
+      headerLeft:()=>(
+        <Icon.Button name='three-bars' size={25}
+        backgroundColor="#009387" onPress={() => navigation.openDrawer()}/> )
+    }}/>
+  </HomeStack.Navigator>
+   ); 
+   
+  const DetailsStackScreen =({navigation}) =>(
+  <DetailsStack.Navigator screenOptions={{
+   headerStyle:{
+   backgroundColor:'#1f65ff',
+  },
+   headerTintColor:'#fff',
+   headerTitleStyle:{
+   fontWeight:'bold'
+  }
+  }}>
+  <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
 
-const DetailsStackScreen = ({navigation}) => (
-<DetailsStack.Navigator screenOptions={{
-        headerStyle: {
-        backgroundColor: '#1f65ff',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-        fontWeight: 'bold'
-        }
-    }}>
-        <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
-        headerLeft: () => (
-            <Icon.Button name="ios-menu" size={25} backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}></Icon.Button>
-        )
-        }} />
-</DetailsStack.Navigator>
-);
+  headerLeft:()=>(
+   <Icon.Button name='three-bars' size={25}
+    backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}/> )  //openDrawer() to open the drawer
+  }}/>
+   </DetailsStack.Navigator>
+  );
