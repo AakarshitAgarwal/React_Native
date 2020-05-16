@@ -67,9 +67,9 @@ const updateSecureTextEntry = () => {
   });
 }
  
-// const loginHandle = (userName, password) => {
-//     signIn(userName,password);
-// }
+const loginHandle = (userName, password) => {
+    signIn(userName,password);
+}
 
 
   return(
@@ -160,8 +160,8 @@ const updateSecureTextEntry = () => {
             <TouchableOpacity
                 style={styles.signIn}
                 //onpress pr signin pr hi rahunga
-                onPress={()=>{signIn()}}
-             //   onPress={()=>{loginHandle( data.username, data.password )}} //pr ab nh
+                //onPress={()=>{signIn()}}
+              onPress={()=>{loginHandle( data.username, data.password )}} //pr ab nh
             >
 
                 

@@ -136,10 +136,11 @@ import RootStackScreen from './screens/RootStackScreen';*/
       //  setUserToken('fgkj');
       //  setIsLoading(false);
       let userToken;
-      userName=null;
+      userToken=null;
       if( userName=='user' && password =='pass'){
         userToken='dfgdfg';
       }
+      // console.log('user token: ', userToken);
       dispatch({type:'LOGIN',id:userName,token:userToken});
     },
     signOut: () => {
@@ -148,15 +149,19 @@ import RootStackScreen from './screens/RootStackScreen';*/
     dispatch({type:'LOGOUT'});
     },
     signUp: () => {
-    setUserToken('fgkj');
-    setIsLoading(false);
+    // setUserToken('fgkj');
+    // setIsLoading(false);
    },
   }), []);
 
   useEffect(() => {
   setTimeout(() => {
- //   setIsLoading(false);
-   dispatch({ type: 'REGISTER', token: 'dfklj' });
+   //setIsLoading(false);
+   let userToken;
+      userToken = 'fgg:';
+      
+  //  console.log('user token: ', userToken);    
+   dispatch({ type: 'REGISTER', token: userToken });
    },1000);
   },[]); 
 
