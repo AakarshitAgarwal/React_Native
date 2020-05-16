@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
-const HomeScreen = () => {
+const YourRidesScreen = () => {
     return (
       <View style={styles.container}>
-        <Text>Home Screen under progress</Text>
+        <Text>Your Rides Screen under progress</Text>
         <Button
           title="Click Here"
           onPress={() => alert('Button Clicked!')}
@@ -13,7 +13,7 @@ const HomeScreen = () => {
     );
 };
 
-export default HomeScreen;
+export default YourRidesScreen;
 
 const styles = StyleSheet.create({
   container: {

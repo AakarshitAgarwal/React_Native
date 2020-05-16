@@ -3,16 +3,17 @@ import React from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';  //install it's dependencies
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Icon from 'react-native-vector-icons/Octicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 //import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './HomeScreen';
-import DetailsScreen from './DetailsScreen';
-import ExploreScreen from './ExploreScreen';
+import QRCodeScreen from './QRCodeScreen';
+import PaymentsScreen from './PaymentsScreen';
 import ProfileScreen from './ProfileScreen';
+import NGOScreen from './NGOScreen';
 
 const HomeStack = createStackNavigator();
-const DetailsStack = createStackNavigator();
+const QRCodeStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();   //for material bottom screen
 
@@ -28,40 +29,40 @@ const MainTabScreen = () => (
           tabBarLabel: 'Home',
           tabBarColor: '#009387',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-home" color={color} size={26} />
+            <Icon name="home" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
         name="Notifications"
-        component={DetailsStackScreen}
+        component={QRCodeStackScreen}
         options={{
-          tabBarLabel: 'Updates',
+          tabBarLabel: 'QR Code',
           tabBarColor: '#1f65ff',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-notifications" color={color} size={26} />
+            <Icon name="qrcode" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="AboutNGOS"
+        component={NGOScreen}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'NGOS',
           tabBarColor: '#694fad',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-person" color={color} size={26} />
+            <Icon name="hands-helping" color={color} size={26} />
           ),
         }}
       />
       <Tab.Screen
-        name="Explore"
-        component={ExploreScreen}
+        name="Payments"
+        component={PaymentsScreen}
         options={{
-          tabBarLabel: 'Explore',
+          tabBarLabel: 'Payments',
           tabBarColor: '#d02860',
           tabBarIcon: ({ color }) => (
-            <Icon name="ios-aperture" color={color} size={26} />
+            <Icon name="money-check" color={color} size={26} />
           ),
         }}
       />
@@ -81,16 +82,16 @@ const HomeStackScreen =({navigation}) =>(
     }
   }}>
     <HomeStack.Screen name="Home" component={HomeScreen} options={{
-    
+    //make sure u have a separate name for the home screen as it is used for the maintab and drawcontent both,that is why changed to drawercontent name
       headerLeft:()=>(
-        <Icon.Button name='three-bars' size={25}
+        <Icon.Button name='bars' size={25}
         backgroundColor="#009387" onPress={() => navigation.openDrawer()}/> )
     }}/>
   </HomeStack.Navigator>
    ); 
    
-  const DetailsStackScreen =({navigation}) =>(
-  <DetailsStack.Navigator screenOptions={{
+  const QRCodeStackScreen =({navigation}) =>(
+  <QRCodeStack.Navigator screenOptions={{
    headerStyle:{
    backgroundColor:'#1f65ff',
   },
@@ -99,11 +100,11 @@ const HomeStackScreen =({navigation}) =>(
    fontWeight:'bold'
   }
   }}>
-  <DetailsStack.Screen name="Details" component={DetailsScreen} options={{
+  <QRCodeStack.Screen name="QRCode Screen" component={QRCodeScreen} options={{
 
   headerLeft:()=>(
-   <Icon.Button name='three-bars' size={25}
+   <Icon.Button name='bars' size={25}
     backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}/> )  //openDrawer() to open the drawer
   }}/>
-   </DetailsStack.Navigator>
+   </QRCodeStack.Navigator>
   );

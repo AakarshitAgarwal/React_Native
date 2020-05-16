@@ -18,6 +18,7 @@ import {
 } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+//import { mdiCharity } from '@mdi/js'
 
 //import{ AuthContext } from '../components/context';
 
@@ -31,7 +32,9 @@ export function DrawerContent(props) {
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
             <View style={styles.drawerContent}>
-                    <View style={styles.userInfoSection}>
+                    <View style={styles.userInfoSection}
+                    //userInfoSection for user image and maybe name
+                    >  
                         <View style={{flexDirection:'row',marginTop: 15}}>
                             <Avatar.Image 
                                 source={{
@@ -39,12 +42,75 @@ export function DrawerContent(props) {
                                 }}
                                 size={50}
                             />
-                            <View style={{marginLeft:15, flexDirection:'column'}}>
+                            
+                            <View style={{marginLeft:15, flexDirection:'column'}}
+                            //distance between username and userphoto
+                            >  
                                 <Title style={styles.title}>Aakarshit Agarwal</Title>
                                 <Caption style={styles.caption}>@aakarshitagarwal</Caption>
                             </View>
                         </View>
                     </View>
+                        
+                        
+                    <Drawer.Section style={styles.drawerSection}>
+                        <DrawerItem   //from internet *reference pradip debnath*
+                            icon={({color, size}) => (
+                                <Icon 
+                                name="home-outline" 
+                                color={color}
+                                size={size}
+                                />
+                            )}
+                            label="Home"
+                            onPress={() => {props.navigation.navigate('Home')}}
+                        />
+                        <DrawerItem 
+                            icon={({color, size}) => (
+                                <Icon 
+                                name="account-outline" 
+                                color={color}
+                                size={size}
+                                />
+                            )}
+                            label="Profile"
+                            onPress={() => {props.navigation.navigate('ProfileScreen')}}
+                        />
+                        <DrawerItem 
+                            icon={({color, size}) => (
+                                <Icon 
+                                name="car" 
+                                color={color}
+                                size={size}
+                                />
+                            )}
+                            label="Your Rides"
+                            onPress={() => {props.navigation.navigate('YourRidesScreen')}}
+                        />
+                        <DrawerItem 
+                            icon={({color, size}) => (
+                                <Icon 
+                                name="human-handsdown" 
+                                color={color}
+                                size={size}
+                                />
+                            )}
+                            label="About NGOS"
+                            onPress={() => {props.navigation.navigate('AboutNGOS')}}
+                        />
+                        <DrawerItem 
+                            icon={({color, size}) => (
+                                <Icon 
+                                name="account-check-outline" 
+                                color={color}
+                                size={size}
+                                />
+                            )}
+                            label="Support"
+                            onPress={() => {props.navigation.navigate('SupportScreen')}}
+                        />
+                    </Drawer.Section>
+                    
             </View>            
             </DrawerContentScrollView>
             

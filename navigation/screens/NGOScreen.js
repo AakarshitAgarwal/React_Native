@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
-const SettingsScreen = () => {
+const NGOScreen = () => {
     return (
       <View style={styles.container}>
-        <Text>Settings Screen</Text>
+        <Text>NGOS Screen under progress</Text>
         <Button
           title="Click Here"
           onPress={() => alert('Button Clicked!')}
@@ -13,7 +13,7 @@ const SettingsScreen = () => {
     );
 };
 
-export default SettingsScreen;
+export default NGOScreen;
 
 const styles = StyleSheet.create({
   container: {

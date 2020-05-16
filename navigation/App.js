@@ -21,7 +21,12 @@ import { DrawerContent } from './screens/DrawerContent';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabScreen from './screens/MainTabScreen';
+import SupportScreen from './screens/SupportScreen';
+import NGOScreen from './screens/NGOScreen';
+import YourRidesScreen from './screens/YourRidesScreen';
+import ProfileScreen from './screens/ProfileScreen';
  
+
 const Drawer = createDrawerNavigator();
   
  
@@ -73,8 +78,11 @@ import RootStackScreen from './screens/RootStackScreen';*/
     return(
       <NavigationContainer>
       <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
-        <Drawer.Screen name="Home" component ={MainTabScreen}/>
-        {/* <Drawer.Screen name="Details" component ={DetailsStackScreen}/> */}
+        <Drawer.Screen name="HomeDrawer" component ={MainTabScreen}/>
+        <Drawer.Screen name="SupportScreen" component ={SupportScreen}/>
+        <Drawer.Screen name="ProfileScreen" component ={ProfileScreen}/>
+        <Drawer.Screen name="YourRidesScreen" component ={YourRidesScreen}/>
+      
       </Drawer.Navigator>
     </NavigationContainer>
     );
