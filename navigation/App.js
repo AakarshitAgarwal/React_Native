@@ -94,20 +94,30 @@ const Drawer = createDrawerNavigator();
 
     //useMemo is used to speed up the execution,in which we define the functions for the screen for the execution
   const authContext = React.useMemo(() => ({
-    signIn: async(userName,password) => {
+    signIn: async(foundUser) => {
+    //signIn: async(userName,password) => {
       //  setUserToken('fgkj');
       //  setIsLoading(false);
-      let userToken;
-      userToken=null;
-      if( userName=='user' && password =='pass'){
-        try {
-          userToken='dfgdfg';
-          await AsyncStorage.setItem('userToken', userToken);
-          
-      }catch(e) {
+     
+      const userToken = String(foundUser[0].userToken);
+      const userName = foundUser[0].username;
+      
+      try {
+        await AsyncStorage.setItem('userToken', userToken);
+      } catch(e) {
         console.log(e);
-    }
-  }
+      }
+  //     let userToken;
+  //     userToken=null;
+  //     if( userName =='user' && password =='pass'){
+  //       try {
+  //         userToken='dfgdfg';
+  //         await AsyncStorage.setItem('userToken', userToken);
+          
+  //     }catch(e) {
+  //       console.log(e);
+  //   }
+  // }
       // console.log('user token: ', userToken);
       dispatch({type:'LOGIN',id:userName,token:userToken});
     },

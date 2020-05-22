@@ -9,7 +9,8 @@ import {
     TextInput,
     Platform,
     StyleSheet ,
-    StatusBar
+    StatusBar,
+    Alert
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';    //from npm install react-native-animatable --save
 import LinearGradient from 'react-native-linear-gradient';     //from npm install react-native-linear-gradient --save and npm i react-native-linear-gradient
@@ -18,6 +19,7 @@ import Feather from 'react-native-vector-icons/Feather';
 
 import { AuthContext } from '../components/context';
 
+import Users from '../model/users';
 
 const SignInScreen =({navigation})=>{
 
@@ -36,31 +38,43 @@ const { signIn } = React.useContext(AuthContext); //accessing signin function fo
 
 //for Username
 const textInputChange = (val) => {
-  if( val.length !== 0 ) {  //if field is not empty then we will update our state
-      setData({
+  if( val.trim().length >= 4 ) {  //if field is not empty then we will update our state
+      setData({   //with this val.trim().length >= 4 user will expericence validtion on dynamic!
 
         //added destructuring operator to get existing state
           ...data,   //this will access the data array created above
          
           username: val,
-          check_textInputChange: true
+          check_textInputChange: true,
+          isValidUser: true
       });
   } 
   else {
       setData({
           ...data,
           username: val,
-          check_textInputChange: false    //false*
+          check_textInputChange: false ,   //false*
+          isValidUser: false
       });
     }
 }
 //for password
 const handlePasswordChange = (val) => {
-  setData({
-      ...data,
-      password: val
-  });
+    if( val.trim().length >= 8 ) {
+        setData({
+            ...data,
+            password: val,
+            isValidPassword: true
+        });
+    } else {
+        setData({
+            ...data,
+            password: val,
+            isValidPassword: false
+        });
+    }
 }
+
 //for toggling the icon
 const updateSecureTextEntry = () => {
   setData({
@@ -84,11 +98,28 @@ const handleValidUser = (val) => {
     }
 }
 
- 
-const loginHandle = (username, password) => {
-    signIn(username,password);
-}
+ //loginHandle handled in App.js file
+const loginHandle = (userName, password) => {
+    
+    const foundUser = Users.filter( item => {
+        return userName == item.username && password == item.password;
+    } );
 
+    if ( data.username.length == 0 || data.password.length == 0 ) {//if nothing is inserted and signIn
+        Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+            {text: 'Okay'}
+        ]);
+        return;
+    }
+
+    if ( foundUser.length == 0 ) {//check
+        Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+            {text: 'Okay'}
+        ]);
+        return;//if user is not found..simply return
+    }
+    signIn(foundUser);
+}
 
   return(
     <View style={styles.container}>
