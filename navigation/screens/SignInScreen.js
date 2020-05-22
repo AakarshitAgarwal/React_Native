@@ -23,10 +23,12 @@ const SignInScreen =({navigation})=>{
 
   //for password eye and security
   const [data, setData] = React.useState({
-    Username: '',
+    username: '',
     password: '',
     check_textInputChange: false,
-    secureTextEntry: true
+    secureTextEntry: true,
+    isValidUser: true,
+    isValidPassword: true,
 });
 
 
@@ -40,14 +42,14 @@ const textInputChange = (val) => {
         //added destructuring operator to get existing state
           ...data,   //this will access the data array created above
          
-          Username: val,
+          username: val,
           check_textInputChange: true
       });
   } 
   else {
       setData({
           ...data,
-          Username: val,
+          username: val,
           check_textInputChange: false    //false*
       });
     }
@@ -66,9 +68,25 @@ const updateSecureTextEntry = () => {
       secureTextEntry: !data.secureTextEntry  //if it is true than it will be false and vice-versa
   });
 }
+
+//valid user function
+const handleValidUser = (val) => {
+    if( val.trim().length >= 4 ) {//if length is greater than 4 than we will update our state 
+        setData({  //trim??
+            ...data,  //fetch previous state 
+            isValidUser: true
+        });
+    } else {
+        setData({
+            ...data, 
+            isValidUser: false
+        });
+    }
+}
+
  
-const loginHandle = (userName, password) => {
-    signIn(userName,password);
+const loginHandle = (username, password) => {
+    signIn(username,password);
 }
 
 
@@ -95,7 +113,8 @@ const loginHandle = (userName, password) => {
                   placeholder="Your Username"
                   style={styles.textInput}
                   autoCapitalize="none"
-
+                  onChangeText={(val)=>textInputChange(val)}
+                  onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}  //this is for validation ,nativeEvent-->for getting actual value from function
                 />
 
                 <Feather 
@@ -113,9 +132,16 @@ const loginHandle = (userName, password) => {
                         size={20}
                     />
                 </Animatable.View>
-                : null} */}
-           
+                : null} */}           
         </View>
+        { data.isValidUser ? null : 
+            <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+            </Animatable.View>
+            }
+
+
+
         <Text style={[styles.text_footer, {
                 marginTop: 35
             }]}>Password</Text>
@@ -152,7 +178,15 @@ const loginHandle = (userName, password) => {
                     }
                 </TouchableOpacity>
         </View>
+        { data.isValidPassword ? null : 
+            <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+            </Animatable.View>
+            }
       
+
+
+
         <TouchableOpacity    >  
                 <Text style={{color: '#009387', marginTop:15}}>Forgot password?</Text>
             </TouchableOpacity>
