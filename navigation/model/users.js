@@ -17,7 +17,7 @@ export default Users = [
         id: 3, 
         email: 'user3@email.com',
         username: 'user3', 
-        password: 'tejas', 
+        password: 'tejas12345', 
         userToken: 'testtoken'
     },
 ];
