@@ -1,10 +1,13 @@
-import {Modal, Text, TouchableOpacity, View} from "react-native";
+import {
+    Text,
+    TouchableOpacity,
+    View
+} from "react-native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import {Card} from "react-native-elements";
 import React from "react";
 import styles from "../styles/styles";
 import * as Animatable from 'react-native-animatable';
-import {NGOContext} from '../components/context';
 
 const NGOcard = (props) => {
     return (
@@ -64,7 +67,7 @@ const NGOcard = (props) => {
                     alignItems: "center",
                     // borderWidth: 2,
                     // borderColor: 'red',
-                }} onPress={()=>props.click(props.item)}>
+                }} onPress={() => props.click(props.item)}>
                     <Text style={[styles.NGOText, {
                         paddingLeft: 5,
                         paddingTop: 5,

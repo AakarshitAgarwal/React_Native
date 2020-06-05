@@ -55,12 +55,12 @@ const NGOScreen = () => {
     return (
         <View style={styles.NGOContainer}>
             <View style={styles.NGOList}>
-                <FlatList
+                {/* <FlatList
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item) => `${item.NGO_id}`}
                     data={[...data.NGOdata]}
                     renderItem={({item}) => <Animatable.View animation={"fadeIn"} duration={1000}><NGOcard item={item} click={clickEventListener}/></Animatable.View>}
-                />
+                /> */}
                 <Modal
                     animationType={'fade'}
                     transparent={true}
