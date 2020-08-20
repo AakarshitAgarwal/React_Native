@@ -117,7 +117,7 @@ const SignInScreen = ({navigation}) => {
             ]);
             return;
         }
-        axios.post('http://192.168.43.77:8000/login/', {
+        axios.post('http://192.168.29.77:8000/login/', {
             "password": data.password,
             "username": data.username,
         }).then((response) => {

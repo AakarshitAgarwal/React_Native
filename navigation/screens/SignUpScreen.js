@@ -99,7 +99,7 @@ const SignUpScreen = ({navigation}) => {
 
     //pushing the entered information to django server
     const passData = () => {
-        axios.post('http://192.168.43.77:8000/register/', {
+        axios.post('http://192.168.29.77:8000/register/', {
             "username": data.username,
             "email": data.email,
             "password": data.password,

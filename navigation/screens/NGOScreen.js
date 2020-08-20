@@ -25,7 +25,7 @@ const NGOScreen = () => {
     })
 
     useEffect(() => {
-        axios.get('http://192.168.43.77:8000/NGO/')
+        axios.get('http://192.168.29.77:8000/NGO/')
             .then(function (response) {
                 let list = []
                 for (let i in response.data) {
@@ -55,12 +55,12 @@ const NGOScreen = () => {
     return (
         <View style={styles.NGOContainer}>
             <View style={styles.NGOList}>
-                {/* <FlatList
+                <FlatList
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item) => `${item.NGO_id}`}
                     data={[...data.NGOdata]}
                     renderItem={({item}) => <Animatable.View animation={"fadeIn"} duration={1000}><NGOcard item={item} click={clickEventListener}/></Animatable.View>}
-                /> */}
+                />
                 <Modal
                     animationType={'fade'}
                     transparent={true}

@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Linking, Text, TouchableOpacity, Alert, StyleSheet, View} from "react-native";
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import Payment from "./Payment";
+import axios from 'axios';
 
 const QRCodeScreen = (props) => {
 
@@ -10,12 +11,16 @@ const QRCodeScreen = (props) => {
     })
 
     const ifScanned = e => {
-        // Linking.openURL(e.data)
-        //     .catch(err => Alert.alert(e.data));
-        setState({
-            qrdata: e.data
-        })
-        passData(e.data);
+        axios.get('http://192.168.29.77:8000/driver/' + e.data)
+            .then(function (response) {
+                setState({
+                    qrdata: e.data
+                })
+                passData(e.data);
+            }).catch(error => {
+            Alert.alert('OOPS', 'Invalid QR code. Please try Again', [{text: 'Okay'}])
+        });
+
     }
 
     const passData = (data) => {
@@ -30,14 +35,14 @@ const QRCodeScreen = (props) => {
             onRead={ifScanned}
             reactivate={true}
             permissionDialogMessage="Need Permission To Access Camera"
-            reactivateTimeout={5000}
+            reactivateTimeout={2000}
             showMarker={true}
             markerStyle={{borderColor: "#FFF", borderRadius: 10}}
 
             bottomContent={
                 <View style={styles.footer}>
-                        <Text style={{fontSize: 21, color: '#1f65ff'}}>Scan QR Code</Text>
-                        <Text>{state.qrdata}</Text>
+                    <Text style={{fontSize: 21, color: '#1f65ff'}}>Scan QR Code</Text>
+                    {/*<Text>{state.qrdata}</Text>*/}
                 </View>
             }/>
     )

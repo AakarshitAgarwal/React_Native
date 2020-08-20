@@ -4,16 +4,15 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
-//import Icon from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './HomeScreen';
 import QRCodeScreen from './QRCodeScreen';
 import PaymentsScreen from './PaymentsScreen';
-import ProfileScreen from './ProfileScreen';
 import NGOScreen from './NGOScreen';
 import Payment from "./Payment";
 //import paymentsuccess from './paymentsuccess';
 import  paymentbill  from "./paymentbill";
+import Browser from "./Browser";
 
 const HomeStack = createStackNavigator();
 const QRCodeStack = createStackNavigator();
@@ -112,6 +111,7 @@ const QRCodeStackScreen = ({navigation}) => (
                              backgroundColor="#1f65ff" onPress={() => navigation.openDrawer()}/>)  //openDrawer() to open the drawer
         }}/>
         <QRCodeStack.Screen name={'Payment'} component={Payment} />
+        <QRCodeStack.Screen name={'Browser'} component={Browser}/>
     </QRCodeStack.Navigator>
 );
 
